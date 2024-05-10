@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import YouTube from 'react-youtube';
+import React, { useEffect } from 'react';
+// import YouTube from 'react-youtube';
 import Header from '../../header/header';
 
 const Video = () => {
     document.cookie = 'cookieName=cookieValue; SameSite=None; Secure';
-  const [videos, setVideos] = useState([]);
-  const [name, setName] = useState([]);
+  // const [videos, setVideos] = useState([]);
+  // const [name, setName] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +38,7 @@ const Video = () => {
   return (
     <>
     <Header/>
-        <div className="flex w-full items-center justify-center h-auto">
+        {/* <div className="flex w-full items-center justify-center h-auto">
             <div className='flex w-11/12 border flex-wrap gap-8 justify-center h-auto p-4 mt-12'>
                 {videos.map(video => (
                     <YouTube videoId={video.key} />
@@ -47,7 +47,7 @@ const Video = () => {
                     <p> <strong> {names.name} </strong> </p>
                 })}
             </div>
-        </div>
+        </div> */}
     </>
     
   );
