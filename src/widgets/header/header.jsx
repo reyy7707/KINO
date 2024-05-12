@@ -22,7 +22,7 @@ const Header = () => {
             header.classList.add('bg-black');
         } else {
             header.classList.remove('bg-black');
-            header.classList.add('bg-black');
+            header.classList.add('bg-transperent');
         }
     });
 
@@ -37,7 +37,7 @@ const Header = () => {
 
   return (
     <>
-        <div id="header" className='flex w-full h-auto border-b-slate-500 border-b items-center justify-center fixed transition-colors duration-300 bg-black z-50'>
+        <div id="header" className='flex w-full h-auto border-b-slate-500 border-b items-center justify-center fixed transition-colors duration-300 hover:bg-black z-50'>
             <div className='flex w-9/12 h-auto items-center justify-between'>
                 <div className='flex w-4/12 h-auto items-center justify-between p-6'>
                     <Link to={'/'}>
