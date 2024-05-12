@@ -32,12 +32,20 @@ function FilmDetails() {
     }, [id]);
 
     if (!film) {
-        return <div>Loading...</div>;
+        return <div className='flex w-full items-center justify-center absolute top-44 animate-spin bg-blue-500'> </div>;
     }
 
     return (
         <>
-            <div className='w-full h-auto flex justify-around'>
+
+        <div className='flex w-full items-center justify-center'>
+        <div className='flex w-full items-center h-[70vh] bg-cover bg-center' style={{backgroundImage: `url("https://image.tmdb.org/t/p/w500${film.poster_path}")`}}>
+            </div>
+        </div>
+
+
+
+            {/* <div className='w-full h-auto flex justify-around'>
                 <div className='w-auto h-auto flex flex-col shadow-2xl mt-28 mb-8'>
                     <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`} alt='' className='w-auto h-auto rounded-t-lg' />                      
                 </div>
@@ -54,7 +62,7 @@ function FilmDetails() {
                 <img className='w-auto h-3/6 mt-24 rounded-lg' src={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`} alt='bg path' />
             </div>
 
-            </div>
+            </div> */}
            
         </>
 
