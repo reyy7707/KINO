@@ -1,11 +1,44 @@
 import { React, useEffect, useState } from 'react'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth } from '../firebase';
-import Header from '../header/header';
+import Header from '../../widgets/header/header';
 import { Link } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
+import { Navigation } from 'swiper/modules';
 
 const AuthDetails = () => {
     document.cookie = 'cookieName=cookieValue; SameSite=None; Secure';
+
+    const [tvShows, setTvShows] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const apiKey = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNDU2YTA2MWM1ZjllOTYwM2I4ZWIxYjQzMmRlNDU0ZSIsInN1YiI6IjY2MWU1ZDM5OTY2NzBlMDE3ZGQ5Mjk3NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.i3exZvpRuW6sDsBDcMxtX17C88C5Ke-5RVbQAabwwGg';
+                const options = {
+                    method: 'GET',
+                    headers: {
+                        accept: 'application/json',
+                        Authorization: `Bearer ${apiKey}`
+                    }
+                };
+                const url = 'https://api.themoviedb.org/3/movie/popular?language=ru-US&page=1';
+                const response = await fetch(url, options);
+                if (!response.ok) {
+                    throw new Error('Ошибка при загрузке данных');
+                }
+                const data = await response.json();
+                setTvShows(data.results);
+                console.log(data);
+            } catch (error) {
+                console.error('Произошла ошибка:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     const [authUser, setAuthUser] = useState(null)
     useEffect(() => {
         const listen = onAuthStateChanged(auth, (user) => {
@@ -28,23 +61,6 @@ const AuthDetails = () => {
     return (
         <>
             <Header />
-            <div className='flex fixed h-auto border justify-start items-center bg-black'>
-                <div className='w-[10rem] flex bg-black flex-col items-center'>
-                    <img className='w-40 h-30' src='https://cdn.dribbble.com/users/4051369/screenshots/17656333/media/7e1fc2d4e0cdfb64ec11ea30f0c4fd65.jpg?resize=400x0' alt='' />
-                    <h1 className='text-white mt-10'> Profile </h1>
-                    <h1 className='text-white mt-10'> Search </h1>
-                    <h1 className='text-white mt-10'> Edit </h1>
-                    <h1 className='text-white mt-10'> Movie </h1>
-                    {authUser ? (
-                        <div>
-                            <div className='flex w-full items-center justify-center pt-6 pb-2'>
-                                <button onClick={userSignOut} className='border-2 p-2 duration-500 text-white text-sm hover:border-red-500'> Выйти из аккаунта </button>
-                            </div>
-                        </div>
-                    ) : <Link to={'/register'}> <h1 className='p-2 text-lg'> Еще нет аккаунта? <span className='text-lg text-blue-500'> Зарегистрируйтесь </span> </h1> </Link>
-                    }
-                </div>
-            </div>
 
             <div className=''>
                 <img src='https://kartinki.pics/uploads/posts/2021-07/1626844965_13-kartinkin-com-p-drakon-anime-khayao-miyadzaki-anime-krasiv-15.jpg' alt='' />
@@ -57,14 +73,51 @@ const AuthDetails = () => {
                     </div>
 
                     <div className='flex pt-3 w-full items-center justify-center'>
-                        <h1 className=''> Вы вошли как {authUser?.email} </h1>
-                    </div>
+                    {authUser ? (
+                        <div> 
+                            <h1 className='text-xl'> {`Вы вошли как ${authUser.email}`} </h1>
+                            <div className='flex w-full items-center justify-center pt-6 pb-2'>
+                                <button onClick={userSignOut} className='border-2 p-2 duration-500 hover:border-red-500'> Выйти из аккаунта </button>
+                            </div> 
+                        </div>
+                    ) : <Link to={'/register'}> <h1 className='p-2 text-lg'> Еще нет аккаунта? <span className='text-blue-500'> Зарегистрируйтесь </span> </h1> </Link> 
+                    }
+                </div>
 
                 </div>
 
-                <div className='flex w-2/6 border h-full flex-col'>
-                    <h1 className='text-3xl p-3'> reyy reyy </h1>
-                    <h2 className='text-lg pl-3'> Дата последнего входа в систему {authUser?.metadata.lastSignInTime} </h2>
+                <div className='flex w-2/6 h-full flex-wrap'>
+                    {/* <div className='flex w-full justify-start'>
+                        <h1 className='text-2xl text-black ml-2'><strong>Recomendations for you</strong></h1>
+                    </div> */}
+
+                    <div className='flex w-full justify-center items-center'>
+                        <div className='flex w-10/12'>
+                            <Swiper
+                                slidesPerView={1}
+                                pagination={{ clickable: true }}
+                                modules={[Navigation]}
+                                navigation={{
+                                    prevEl: '.swiper-button-prev',
+                                    nextEl: '.swiper-button-next',
+                                }}
+                            >
+                                {tvShows.slice(0, 20).map(tvShow => (
+                                    <SwiperSlide key={tvShow.id}>
+                                        <div className='h-auto w-3/6 rounded-lg ml-32 flex-col mt-4 mb-8 relative inline-block group'>
+                                            <Link to={`/films/${tvShow.id}`}>
+                                                <img src={`https://image.tmdb.org/t/p/w500${tvShow.poster_path}`} alt='' className='block w-full h-auto transition duration-500 ease-in-out transformrounded-lg' />
+                                                <div class="absolute inset-0 flex items-center justify-center opacity-0 transition duration-500 ease-in-out group-hover:opacity-100">
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    </SwiperSlide>
+                                ))}
+                                <div className="swiper-button-prev"></div>
+                                <div className="swiper-button-next"></div>
+                            </Swiper>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

@@ -29,7 +29,7 @@ const SignIn = () => {
        
         signInWithEmailAndPassword(auth, email, password).then((user) => {
             console.log(user);
-            setError('')
+            setError('');
             setEmail('');
             setPassword('');
             navigate('/personal-area')

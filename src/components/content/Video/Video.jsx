@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 // import YouTube from 'react-youtube';
-import Header from '../../header/header';
+import Header from '../../../widgets/header/header';
 
 const Video = () => {
     document.cookie = 'cookieName=cookieValue; SameSite=None; Secure';

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import Header from '../../header/header';
+import Header from '../../../widgets/header/header';
 
 const Episodes = () => {
-    const { id } = useParams();
     const [episodes, setEpisodes] = useState([]);
 
     useEffect(() => {
