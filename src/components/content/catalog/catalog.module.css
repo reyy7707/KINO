@@ -1,0 +1,91 @@
+.sort{
+    background: #131313;
+    display: flex;
+    flex-direction: column;
+}
+.main{
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    color: white;
+}
+.body{
+    background: #131313;
+}
+.carts{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em;
+    padding: 2em 1em;
+}
+.character{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.character__pagination{
+    background: white;
+}
+
+.inputBlock{
+    display: flex;   
+    gap: .7em; 
+    width: 25em;
+    padding: 10px 15px;
+    border-radius: .5em;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.226);
+}
+.coolicon{
+    display: flex;
+    gap: .6em;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding-left: .7em;
+    padding-right: .7em;
+    border-radius: .4em;
+    transition: all 1s;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+.coolicon:hover{
+    background: rgba(255, 255, 255, 0.3);
+}
+.coolicon img{
+    transition: transform 0.3s ease;
+    position: relative;
+    top: 1px;
+}
+.coolicon:hover img{
+    transform: scale(1.2);
+}
+@media screen and (max-width: 1050px) and (min-width: 801px) {
+    .body{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media screen and (max-width: 800px) and (min-width: 521px) {
+    .carts{
+        padding: 50px 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+@media screen and (max-width: 520px) and (min-width: 341px){
+    .carts{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media screen and (max-width: 400px) and (min-width: 341px){
+    .carts{
+        padding: 2em 1em;
+    }
+}
+@media screen and (max-width: 340px){
+    .carts{
+        grid-template-columns: 1fr;
+        padding: 2em;
+    }
+}

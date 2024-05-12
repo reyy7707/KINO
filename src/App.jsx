@@ -19,8 +19,8 @@ import Episodes from './components/content/episodes/episodes'
 //Стили
 import './index.css'
 //Библиотеки
-import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import Catalog from './components/content/catalog/catalog'
 
 
 
@@ -38,6 +38,7 @@ const App = () => {
       <Route path='/video' element={<Video/>}/>
       <Route path='/episodes' element={<Episodes/>}/>
       <Route path='/now' element={<Popular/>}/>
+      <Route path='/catalog' element={<Catalog/>}/>
       {/* <Route path='/videoTest' element={<Video2/>}/> */}
     </Routes> 
     </>
