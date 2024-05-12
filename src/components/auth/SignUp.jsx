@@ -42,6 +42,7 @@ const SignUp = () => {
             setEmail('');
             setPassword('');
             setCopyPassword('');
+            localStorage.setItem('KINOauth', true )
             navigate('/personal-area')
         }) 
             .catch((error) => console.log(error))
@@ -57,12 +58,6 @@ const SignUp = () => {
                 <div className='flex items-start flex-col'>
                     <h1 className='text-4xl text-clip pt-8 text-black opacity-90'> Регистрация аккаунта </h1>
                 </div>
-                <input 
-                    value={displayName} 
-                        onChange={(e) => setDisplayName(e.target.value)}
-                            placeholder='ФИО' 
-                                type='name' 
-                                    className='border rounded-md p-3 w-4/6 text-xl pl-8 mt-8'/> 
                     <h1 className='relative right-32 pt-8'> Введите свою почту* </h1>
                     <input 
                         value={email} 

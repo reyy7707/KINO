@@ -34,26 +34,28 @@ function FilmDetails() {
     if (!film) {
         return <div>Loading...</div>;
     }
-    console.log(film);
 
     return (
         <>
-            <div className='w-full flex h-auto'>
-                <img className='w-auto ' src={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`} alt='bg path' />
-            </div>
-
-            <div className='w-full h-auto items-center justify-center flex'>
-                <div className='w-[31rem] h-auto flex flex-col shadow-2xl mt-12 mb-8'>
-                    <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`} alt='' className='w-auto h-auto rounded-t-lg' />
-                    <p className='pl-4 pt-1'> <strong>Название: </strong>{film.title}</p>
-                    <p className='pl-4 pt-1'> <strong>Статус: </strong>{film.status}</p>
-                    <p className='pl-4 pt-2'> <strong>Описание: </strong>{film.overview}</p>
-                    <p className='pl-4 pt-2'> <strong>Рейтинг: </strong>{film.vote_average}</p>
-                    <p className='pl-4 pt-2 pb-2'> <strong>Дата первого выхода:</strong> {film.release_date}</p>
+            <div className='w-full h-auto flex justify-around'>
+                <div className='w-auto h-auto flex flex-col shadow-2xl mt-28 mb-8'>
+                    <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`} alt='' className='w-auto h-auto rounded-t-lg' />                      
                 </div>
-
+            <div className='flex w-2/6 mt-28 ml-12 flex-col'>
+                <p className='pt-1 text-3xl'>{film.title}</p>
+                <p className='pt-2 text-3xl'> <strong> Рейтинг: </strong> {film.vote_average}</p>
+                <div className='flex overflow-scroll w-3/6'>
+                   <p className='pt-2 text-xl'> <strong className='text-3xl'>Описание: </strong>{film.overview}</p> 
+                </div>
+                <p className='pt-2 pb-2 text-3xl'> <strong>Дата первого выхода:</strong> {film.release_date}</p>
             </div>
 
+            <div className='flex'>
+                <img className='w-auto h-3/6 mt-24 rounded-lg' src={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`} alt='bg path' />
+            </div>
+
+            </div>
+           
         </>
 
     );
