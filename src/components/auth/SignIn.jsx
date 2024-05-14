@@ -28,7 +28,7 @@ const SignIn = () => {
         e.preventDefault()
        
         signInWithEmailAndPassword(auth, email, password).then((user) => {
-            console.log(user);
+            localStorage.setItem('KINOauth', true )
             setError('');
             setEmail('');
             setPassword('');

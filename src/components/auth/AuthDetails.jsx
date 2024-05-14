@@ -107,7 +107,7 @@ const AuthDetails = () => {
                                         <div className='h-auto w-3/6 rounded-lg ml-32 flex-col mt-4 mb-8 relative inline-block group'>
                                             <Link to={`/films/${tvShow.id}`}>
                                                 <img src={`https://image.tmdb.org/t/p/w500${tvShow.poster_path}`} alt='' className='block w-full h-auto transition duration-500 ease-in-out transformrounded-lg' />
-                                                <div class="absolute inset-0 flex items-center justify-center opacity-0 transition duration-500 ease-in-out group-hover:opacity-100">
+                                                <div className="absolute inset-0 flex items-center justify-center opacity-0 transition duration-500 ease-in-out group-hover:opacity-100">
                                                 </div>
                                             </Link>
                                         </div>
