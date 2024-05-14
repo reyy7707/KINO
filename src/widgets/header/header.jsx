@@ -33,7 +33,7 @@ const Header = () => {
         } else {
             setIsAuth(false)
         }
-    },[])
+    },[localStorage])
 
   return (
     <>
