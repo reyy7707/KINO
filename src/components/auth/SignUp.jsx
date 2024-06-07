@@ -3,7 +3,7 @@
 //Стили
 import '../../index.css'
 //Библиотеки
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
@@ -33,10 +33,10 @@ const SignUp = () => {
     function register(e) {
         e.preventDefault()
         if(password !== copyPassword) {
-            setError("Пароли не совпадают")
+            setError("Password mismatch")
             return
         }
-        createUserWithEmailAndPassword(auth, email, password, displayName).then((user) => {
+        createUserWithEmailAndPassword(auth, email, password, displayName).then(() => {
             setDisplayName('')
             setError('')
             setEmail('');
@@ -47,7 +47,6 @@ const SignUp = () => {
         }) 
             .catch((error) => console.log(error))
     }
-    console.log(displayName);
     return (
         <>
         <div className='w-full h-auto items-center justify-center flex'>
