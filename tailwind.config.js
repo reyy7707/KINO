@@ -10,6 +10,9 @@ export default {
         catalog: 'rgb(19, 19, 19)',
         search: 'rgb(255, 255, 255, 0.2)'
       },
+      fontFamily: {
+        Nunito: ['Nunito', 'sans-serif']
+      },
     },
   },
   plugins: [],
